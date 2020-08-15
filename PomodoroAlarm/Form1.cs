@@ -38,7 +38,10 @@ namespace PomodoroAlarm
                 backgroundWorker1.CancelAsync();
             }
         }
-
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {

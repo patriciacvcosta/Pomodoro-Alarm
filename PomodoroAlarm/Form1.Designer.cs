@@ -41,17 +41,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.lblCounter = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.roundedButton1 = new PomodoroAlarm.RoundedButton();
-            this.roundedButton2 = new PomodoroAlarm.RoundedButton();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
+            this.btnStop = new PomodoroAlarm.RoundedButton();
+            this.btnStart = new PomodoroAlarm.RoundedButton();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownFocusDurationHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownRestDurationHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownActivityDurationMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownRestDurationMinutes)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -99,8 +100,8 @@
             // 
             this.lblWarnings.AutoSize = true;
             this.lblWarnings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarnings.ForeColor = System.Drawing.Color.White;
-            this.lblWarnings.Location = new System.Drawing.Point(229, 175);
+            this.lblWarnings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.lblWarnings.Location = new System.Drawing.Point(110, 174);
             this.lblWarnings.Name = "lblWarnings";
             this.lblWarnings.Size = new System.Drawing.Size(90, 24);
             this.lblWarnings.TabIndex = 6;
@@ -116,7 +117,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(30, 12);
+            this.progressBar.Location = new System.Drawing.Point(29, 134);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(334, 37);
             this.progressBar.TabIndex = 7;
@@ -183,92 +184,116 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "h";
             // 
+            // lblCounter
+            // 
+            this.lblCounter.AutoSize = true;
+            this.lblCounter.BackColor = System.Drawing.Color.Transparent;
+            this.lblCounter.Font = new System.Drawing.Font("Agency FB", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCounter.ForeColor = System.Drawing.Color.White;
+            this.lblCounter.Location = new System.Drawing.Point(414, 131);
+            this.lblCounter.Name = "lblCounter";
+            this.lblCounter.Size = new System.Drawing.Size(114, 42);
+            this.lblCounter.TabIndex = 20;
+            this.lblCounter.Text = "00:00:00";
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(520, 2);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(33, 35);
+            this.btnExit.TabIndex = 21;
+            this.btnExit.Text = "X";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.BtnExit_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnExit);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Location = new System.Drawing.Point(-3, -4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(555, 74);
+            this.panel2.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Bauhaus 93", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(94, 7);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(361, 53);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Focus Timer App";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(21, 9);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(22, 212);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(517, 42);
             this.label7.TabIndex = 15;
             this.label7.Text = "Set your Focus and Break sessions";
             // 
-            // panel1
+            // btnStop
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Location = new System.Drawing.Point(-2, 211);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(555, 61);
-            this.panel1.TabIndex = 16;
-            // 
-            // roundedButton1
-            // 
-            this.roundedButton1.BorderColor = System.Drawing.Color.PowderBlue;
-            this.roundedButton1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.roundedButton1.FlatAppearance.BorderSize = 0;
-            this.roundedButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton1.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundedButton1.Location = new System.Drawing.Point(30, 403);
-            this.roundedButton1.Name = "roundedButton1";
-            this.roundedButton1.OnHoverBorderColor = System.Drawing.Color.Gray;
-            this.roundedButton1.OnHoverButtonColor = System.Drawing.Color.Yellow;
-            this.roundedButton1.OnHoverTextColor = System.Drawing.Color.Gray;
-            this.roundedButton1.Size = new System.Drawing.Size(118, 64);
-            this.roundedButton1.TabIndex = 17;
-            this.roundedButton1.Text = "START";
-            this.roundedButton1.TextColor = System.Drawing.Color.White;
-            this.roundedButton1.UseVisualStyleBackColor = true;
-            // 
-            // roundedButton2
-            // 
-            this.roundedButton2.BorderColor = System.Drawing.Color.PowderBlue;
-            this.roundedButton2.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.roundedButton2.FlatAppearance.BorderSize = 0;
-            this.roundedButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton2.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundedButton2.Location = new System.Drawing.Point(343, 417);
-            this.roundedButton2.Name = "roundedButton2";
-            this.roundedButton2.OnHoverBorderColor = System.Drawing.Color.Gray;
-            this.roundedButton2.OnHoverButtonColor = System.Drawing.Color.Yellow;
-            this.roundedButton2.OnHoverTextColor = System.Drawing.Color.Gray;
-            this.roundedButton2.Size = new System.Drawing.Size(118, 64);
-            this.roundedButton2.TabIndex = 18;
-            this.roundedButton2.Text = "STOP";
-            this.roundedButton2.TextColor = System.Drawing.Color.White;
-            this.roundedButton2.UseVisualStyleBackColor = true;
+            this.btnStop.BorderColor = System.Drawing.Color.PowderBlue;
+            this.btnStop.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStop.FlatAppearance.BorderSize = 0;
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStop.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStop.Location = new System.Drawing.Point(304, 417);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.OnHoverBorderColor = System.Drawing.Color.Gray;
+            this.btnStop.OnHoverButtonColor = System.Drawing.Color.White;
+            this.btnStop.OnHoverTextColor = System.Drawing.Color.Gray;
+            this.btnStop.Size = new System.Drawing.Size(118, 64);
+            this.btnStop.TabIndex = 18;
+            this.btnStop.Text = "STOP";
+            this.btnStop.TextColor = System.Drawing.Color.White;
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.BtnStop_Click);
             // 
             // btnStart
             // 
-            this.btnStart.Font = new System.Drawing.Font("Nirmala UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(176, 410);
+            this.btnStart.BorderColor = System.Drawing.Color.PowderBlue;
+            this.btnStart.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStart.FlatAppearance.BorderSize = 0;
+            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStart.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStart.Location = new System.Drawing.Point(144, 417);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(79, 57);
-            this.btnStart.TabIndex = 4;
+            this.btnStart.OnHoverBorderColor = System.Drawing.Color.Gray;
+            this.btnStart.OnHoverButtonColor = System.Drawing.Color.White;
+            this.btnStart.OnHoverTextColor = System.Drawing.Color.Gray;
+            this.btnStart.Size = new System.Drawing.Size(118, 64);
+            this.btnStart.TabIndex = 17;
             this.btnStart.Text = "START";
+            this.btnStart.TextColor = System.Drawing.Color.White;
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
-            // 
-            // btnStop
-            // 
-            this.btnStop.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnStop.FlatAppearance.BorderSize = 3;
-            this.btnStop.Font = new System.Drawing.Font("Nirmala UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.Location = new System.Drawing.Point(271, 410);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(79, 57);
-            this.btnStop.TabIndex = 5;
-            this.btnStop.Text = "STOP";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.BtnStop_Click);
             // 
             // PomodoroForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(551, 493);
-            this.Controls.Add(this.roundedButton2);
-            this.Controls.Add(this.roundedButton1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblCounter);
+            this.Controls.Add(this.btnStop);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -277,13 +302,12 @@
             this.Controls.Add(this.numUpDownActivityDurationMinutes);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.lblWarnings);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.numUpDownRestDurationHours);
             this.Controls.Add(this.numUpDownFocusDurationHours);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PomodoroForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pomodoro Alarm";
@@ -292,8 +316,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownRestDurationHours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownActivityDurationMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownRestDurationMinutes)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,12 +338,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private RoundedButton btnStop;
+        private RoundedButton btnStart;
+        private System.Windows.Forms.Label lblCounter;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel1;
-        private RoundedButton roundedButton1;
-        private RoundedButton roundedButton2;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnStop;
     }
 }
 
