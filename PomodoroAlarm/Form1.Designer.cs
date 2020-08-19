@@ -42,11 +42,12 @@
             this.lblFocusTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblBreakTime = new System.Windows.Forms.Label();
+            this.lblCounter = new System.Windows.Forms.Label();
+            this.lblFocusMessage = new System.Windows.Forms.Label();
+            this.lblWarnings = new System.Windows.Forms.Label();
+            this.lblBreakMessage = new System.Windows.Forms.Label();
             this.btnStop = new PomodoroAlarm.RoundedButton();
             this.btnStart = new PomodoroAlarm.RoundedButton();
-            this.lblCounter = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblWarnings = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +83,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(24, 143);
+            this.progressBar.Location = new System.Drawing.Point(24, 147);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(334, 37);
             this.progressBar.TabIndex = 7;
@@ -105,7 +106,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.panel2.BackColor = System.Drawing.Color.SlateGray;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.btnExit);
             this.panel2.Controls.Add(this.label8);
@@ -181,6 +182,54 @@
             this.lblBreakTime.Text = "x";
             this.lblBreakTime.Visible = false;
             // 
+            // lblCounter
+            // 
+            this.lblCounter.AutoSize = true;
+            this.lblCounter.BackColor = System.Drawing.Color.Transparent;
+            this.lblCounter.Font = new System.Drawing.Font("Agency FB", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCounter.ForeColor = System.Drawing.Color.White;
+            this.lblCounter.Location = new System.Drawing.Point(409, 144);
+            this.lblCounter.Name = "lblCounter";
+            this.lblCounter.Size = new System.Drawing.Size(114, 42);
+            this.lblCounter.TabIndex = 27;
+            this.lblCounter.Text = "00:00:00";
+            // 
+            // lblFocusMessage
+            // 
+            this.lblFocusMessage.AutoSize = true;
+            this.lblFocusMessage.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFocusMessage.ForeColor = System.Drawing.Color.White;
+            this.lblFocusMessage.Location = new System.Drawing.Point(179, 87);
+            this.lblFocusMessage.Name = "lblFocusMessage";
+            this.lblFocusMessage.Size = new System.Drawing.Size(184, 28);
+            this.lblFocusMessage.TabIndex = 28;
+            this.lblFocusMessage.Text = "It\'s Focus Time!";
+            this.lblFocusMessage.Visible = false;
+            // 
+            // lblWarnings
+            // 
+            this.lblWarnings.AutoSize = true;
+            this.lblWarnings.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarnings.ForeColor = System.Drawing.Color.White;
+            this.lblWarnings.Location = new System.Drawing.Point(20, 185);
+            this.lblWarnings.Name = "lblWarnings";
+            this.lblWarnings.Size = new System.Drawing.Size(86, 22);
+            this.lblWarnings.TabIndex = 6;
+            this.lblWarnings.Text = "Warnings";
+            this.lblWarnings.Visible = false;
+            // 
+            // lblBreakMessage
+            // 
+            this.lblBreakMessage.AutoSize = true;
+            this.lblBreakMessage.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBreakMessage.ForeColor = System.Drawing.Color.White;
+            this.lblBreakMessage.Location = new System.Drawing.Point(121, 87);
+            this.lblBreakMessage.Name = "lblBreakMessage";
+            this.lblBreakMessage.Size = new System.Drawing.Size(301, 28);
+            this.lblBreakMessage.TabIndex = 29;
+            this.lblBreakMessage.Text = "Good job! It\'s BreakTime!";
+            this.lblBreakMessage.Visible = false;
+            // 
             // btnStop
             // 
             this.btnStop.BorderColor = System.Drawing.Color.PowderBlue;
@@ -221,47 +270,13 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
-            // lblCounter
-            // 
-            this.lblCounter.AutoSize = true;
-            this.lblCounter.BackColor = System.Drawing.Color.Transparent;
-            this.lblCounter.Font = new System.Drawing.Font("Agency FB", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCounter.ForeColor = System.Drawing.Color.White;
-            this.lblCounter.Location = new System.Drawing.Point(409, 140);
-            this.lblCounter.Name = "lblCounter";
-            this.lblCounter.Size = new System.Drawing.Size(114, 42);
-            this.lblCounter.TabIndex = 27;
-            this.lblCounter.Text = "00:00:00";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(190, 87);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(184, 28);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "It\'s Focus Time!";
-            // 
-            // lblWarnings
-            // 
-            this.lblWarnings.AutoSize = true;
-            this.lblWarnings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarnings.ForeColor = System.Drawing.Color.White;
-            this.lblWarnings.Location = new System.Drawing.Point(20, 183);
-            this.lblWarnings.Name = "lblWarnings";
-            this.lblWarnings.Size = new System.Drawing.Size(90, 24);
-            this.lblWarnings.TabIndex = 6;
-            this.lblWarnings.Text = "Warnings";
-            this.lblWarnings.Visible = false;
-            // 
             // PomodoroForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(551, 493);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblBreakMessage);
+            this.Controls.Add(this.lblFocusMessage);
             this.Controls.Add(this.lblCounter);
             this.Controls.Add(this.lblBreakTime);
             this.Controls.Add(this.lblFocusTime);
@@ -305,8 +320,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblBreakTime;
         private System.Windows.Forms.Label lblCounter;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblFocusMessage;
         private System.Windows.Forms.Label lblWarnings;
+        private System.Windows.Forms.Label lblBreakMessage;
     }
 }
 
