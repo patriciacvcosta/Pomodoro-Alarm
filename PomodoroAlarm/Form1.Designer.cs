@@ -225,9 +225,9 @@
             this.lblBreakMessage.ForeColor = System.Drawing.Color.White;
             this.lblBreakMessage.Location = new System.Drawing.Point(121, 87);
             this.lblBreakMessage.Name = "lblBreakMessage";
-            this.lblBreakMessage.Size = new System.Drawing.Size(301, 28);
+            this.lblBreakMessage.Size = new System.Drawing.Size(308, 28);
             this.lblBreakMessage.TabIndex = 29;
-            this.lblBreakMessage.Text = "Good job! It\'s BreakTime!";
+            this.lblBreakMessage.Text = "Good job! It\'s Break Time!";
             this.lblBreakMessage.Visible = false;
             // 
             // btnStop

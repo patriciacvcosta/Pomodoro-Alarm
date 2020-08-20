@@ -15,7 +15,8 @@ namespace PomodoroAlarm
     public partial class PomodoroForm : Form
     {
         int focusDurationInSeconds;
-        int breakTimeDurationInSeconds;
+        int breakDurationInSeconds;
+        bool restartWorker = false;
 
         bool runningModeOff;
 
@@ -33,16 +34,23 @@ namespace PomodoroAlarm
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
+            focusDurationInSeconds = hScrollBarFocusTime.Value * 60;
+            breakDurationInSeconds = hScrollBarBreakTime.Value * 60;
+
+            if (focusDurationInSeconds == 0 && breakDurationInSeconds == 0)
+            {
+                lblWarnings.Text = "Please, set your Focus and/or Break duration..";
+                lblWarnings.Visible = true;
+                SetWarningMessage();
+                return;
+            }
             if (!backgroundWorker1.IsBusy)
             {
                 backgroundWorker1.RunWorkerAsync();
                 timer1.Enabled = true;
 
                 runningModeOff = false;
-                SetRunningModeOff(runningModeOff);
-
-                focusDurationInSeconds = hScrollBarFocusTime.Value * 60;
-                breakTimeDurationInSeconds = hScrollBarBreakTime.Value * 60;
+                SetRunningModeOff(runningModeOff);            
 
             }
             else
@@ -57,8 +65,15 @@ namespace PomodoroAlarm
             if (focusDurationInSeconds > 0)
             {
                 focusDurationInSeconds--;
-                lblCounter.Text = GetHours() + ":" + GetMinutes() + ":" + GetSeconds();
-
+                lblCounter.Text = GetHours(focusDurationInSeconds) + ":" + GetMinutes(focusDurationInSeconds) + ":" + GetSeconds(focusDurationInSeconds);
+                lblFocusMessage.Visible = true;
+            }
+            else if (breakDurationInSeconds > 0)
+            {
+                breakDurationInSeconds--;
+                lblCounter.Text = GetHours(breakDurationInSeconds) + ":" + GetMinutes(breakDurationInSeconds) + ":" + GetSeconds(breakDurationInSeconds);
+                lblFocusMessage.Visible = false;
+                lblBreakMessage.Visible = true;
             }
             else
             {
@@ -71,6 +86,7 @@ namespace PomodoroAlarm
             if (backgroundWorker1.IsBusy)
             {
                 backgroundWorker1.CancelAsync();
+                backgroundWorker1.ReportProgress(0);
                 timer1.Stop();
 
                 runningModeOff = true;
@@ -88,14 +104,12 @@ namespace PomodoroAlarm
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            int sum = 0;
-            int totalSeconds = hScrollBarFocusTime.Value * 60;
+            int totalFocusSeconds = hScrollBarFocusTime.Value * 60;
+            int totalBreakSeconds = hScrollBarBreakTime.Value * 60;
 
             for (int i = 1; i <= 100; i++)
             {
-                Thread.Sleep(totalSeconds * 1000 / 100);
-
-                sum += i;
+                Thread.Sleep(totalFocusSeconds * 1000 / 100);
 
                 backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
 
@@ -107,7 +121,25 @@ namespace PomodoroAlarm
                 }
             }
 
-            e.Result = sum;
+            if (breakDurationInSeconds > 0)
+            {
+                restartWorker = true;
+
+                for (int i = 1; i <= 100; i++)
+                {
+                    Thread.Sleep(totalBreakSeconds * 1000 / 100);
+
+                    backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
+
+                    if (backgroundWorker1.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        backgroundWorker1.ReportProgress(0);
+                        return;
+                    }
+                }
+            }
+
         }
 
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -117,6 +149,11 @@ namespace PomodoroAlarm
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (restartWorker)
+            {
+                backgroundWorker1.CancelAsync();
+                restartWorker = false;
+            }
             if (e.Cancelled)
             {
                 lblWarnings.Text = "You cancelled the activity...";
@@ -126,7 +163,7 @@ namespace PomodoroAlarm
             else if (e.Error != null)
             {
                 lblWarnings.Text = e.Error.Message;
-                lblWarnings.Visible = true;
+                SetWarningMessage();
 
             }
             else
@@ -147,8 +184,6 @@ namespace PomodoroAlarm
             lblBreakTime.Visible = true;
         }
 
-
-
         private void SetUpScrollBars()
         {
             hScrollBarFocusTime.Minimum = 0;
@@ -162,7 +197,7 @@ namespace PomodoroAlarm
             hScrollBarBreakTime.LargeChange = 5;
         }
 
-        private string GetSeconds() => (focusDurationInSeconds % 60).ToString("00");
+        private string GetSeconds(int durationInSeconds) => (durationInSeconds % 60).ToString("00");
         //{
         //    int seconds = focusDurationInSeconds % 60;
 
@@ -175,59 +210,49 @@ namespace PomodoroAlarm
 
 
 
-        private string GetMinutes()
+        private string GetMinutes(int durationInSeconds)
         {
             int minutes;
-            int hours = Convert.ToInt32(GetHours());
+            int hours = Convert.ToInt32(GetHours(durationInSeconds));
 
-            if (focusDurationInSeconds % 3600 <= 1)
+            if (durationInSeconds % 3600 <= 1)
             {
-                minutes = focusDurationInSeconds / 60;
+                minutes = durationInSeconds / 60;
                 return minutes.ToString("00");
             }
 
             else
             {
-                minutes = focusDurationInSeconds / 60 - hours * 60;
+                minutes = durationInSeconds / 60 - hours * 60;
                 return minutes.ToString("00");
             }
 
         }
 
-        private string GetHours()
+        private string GetHours(int durationInSeconds)
         {
-            int hours = focusDurationInSeconds / 3600;
+            int hours = durationInSeconds / 3600;
             return hours.ToString("00");
         }
 
         private void SetRunningModeOff(bool runningModeOff)
         {
+            btnStart.Enabled = runningModeOff;
+            btnStop.Enabled = !runningModeOff;
+
+            lblFocusMessage.Visible = !runningModeOff;
+            lblBreakMessage.Visible = !runningModeOff;
+
+            hScrollBarFocusTime.Enabled = runningModeOff;
+            hScrollBarBreakTime.Enabled = runningModeOff;
+
             if (runningModeOff)
             {
-                btnStart.Enabled = true;
-                btnStop.Enabled = false;
-
-                lblFocusMessage.Visible = false;
-                lblBreakMessage.Visible = false;
-                lblFocusTime.Visible = false;
-                lblBreakTime.Visible = false;
-
                 lblCounter.Text = "00:00:00";
                 backgroundWorker1.ReportProgress(0);
 
                 hScrollBarFocusTime.Value = 0;
                 hScrollBarBreakTime.Value = 0;
-            }
-            else
-            {
-                //btnStart.Enabled = false;
-                btnStop.Enabled = true;
-
-                lblFocusMessage.Visible = true;
-
-                lblFocusTime.Visible = false;
-                lblBreakTime.Visible = false;
-                lblWarnings.Text = "";
             }
         }
 
@@ -238,5 +263,7 @@ namespace PomodoroAlarm
             lblWarnings.Visible = false;
 
         }
+
+
     }
 }
