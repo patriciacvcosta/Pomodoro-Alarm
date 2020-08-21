@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Media;
 
 namespace PomodoroAlarm
 {
@@ -16,9 +17,7 @@ namespace PomodoroAlarm
     {
         int focusDurationInSeconds;
         int breakDurationInSeconds;
-        bool restartWorker = false;
-
-        bool runningModeOff;
+        //bool restartWorker = false;
 
         public PomodoroForm()
         {
@@ -27,9 +26,8 @@ namespace PomodoroAlarm
 
         private void PomodoroForm_Load(object sender, EventArgs e)
         {
-            runningModeOff = true;
             SetUpScrollBars();
-            SetRunningModeOff(runningModeOff);
+            SetRunningModeOff(true);
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -49,8 +47,7 @@ namespace PomodoroAlarm
                 backgroundWorker1.RunWorkerAsync();
                 timer1.Enabled = true;
 
-                runningModeOff = false;
-                SetRunningModeOff(runningModeOff);            
+                SetRunningModeOff(false);
 
             }
             else
@@ -67,6 +64,8 @@ namespace PomodoroAlarm
                 focusDurationInSeconds--;
                 lblCounter.Text = GetHours(focusDurationInSeconds) + ":" + GetMinutes(focusDurationInSeconds) + ":" + GetSeconds(focusDurationInSeconds);
                 lblFocusMessage.Visible = true;
+                lblBreakMessage.Visible = false;
+
             }
             else if (breakDurationInSeconds > 0)
             {
@@ -89,8 +88,7 @@ namespace PomodoroAlarm
                 backgroundWorker1.ReportProgress(0);
                 timer1.Stop();
 
-                runningModeOff = true;
-                SetRunningModeOff(runningModeOff);
+                SetRunningModeOff(true);
 
                 lblWarnings.Text = "You cancelled the activity...";
                 SetWarningMessage();
@@ -107,23 +105,32 @@ namespace PomodoroAlarm
             int totalFocusSeconds = hScrollBarFocusTime.Value * 60;
             int totalBreakSeconds = hScrollBarBreakTime.Value * 60;
 
-            for (int i = 1; i <= 100; i++)
+            //int totalFocusSeconds = 5;
+            //int totalBreakSeconds = 5;
+
+            if (focusDurationInSeconds > 0)
             {
-                Thread.Sleep(totalFocusSeconds * 1000 / 100);
-
-                backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
-
-                if (backgroundWorker1.CancellationPending)
+                for (int i = 1; i <= 100; i++)
                 {
-                    e.Cancel = true;
-                    backgroundWorker1.ReportProgress(0);
-                    return;
+                    if (backgroundWorker1.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        backgroundWorker1.ReportProgress(0);
+                        return;
+                    }
+                    backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
+
+                    Thread.Sleep(totalFocusSeconds * 1000 / 100);
+
                 }
+
+                RingTheAlarm();
             }
+
 
             if (breakDurationInSeconds > 0)
             {
-                restartWorker = true;
+                //restartWorker = true;
 
                 for (int i = 1; i <= 100; i++)
                 {
@@ -138,8 +145,11 @@ namespace PomodoroAlarm
                         return;
                     }
                 }
+                
+                RingTheAlarm();
             }
 
+            backgroundWorker1.ReportProgress(0);
         }
 
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -149,26 +159,27 @@ namespace PomodoroAlarm
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (restartWorker)
-            {
-                backgroundWorker1.CancelAsync();
-                restartWorker = false;
-            }
-            if (e.Cancelled)
-            {
-                lblWarnings.Text = "You cancelled the activity...";
-                SetWarningMessage();
+            //if (restartWorker)
+            //{
+            //    backgroundWorker1.CancelAsync();
+            //    restartWorker = false;
 
-            }
-            else if (e.Error != null)
+            //}
+            //if (e.Cancelled)
+            //{
+            //    lblWarnings.Text = "You cancelled the activity...";
+            //    SetWarningMessage();
+
+            //}
+            if (e.Error != null)
             {
                 lblWarnings.Text = e.Error.Message;
                 SetWarningMessage();
 
             }
-            else
+            else if(!e.Cancelled)
             {
-                btnStart.Enabled = true;
+                SetRunningModeOff(true);
             }
         }
 
@@ -240,30 +251,49 @@ namespace PomodoroAlarm
             btnStart.Enabled = runningModeOff;
             btnStop.Enabled = !runningModeOff;
 
-            lblFocusMessage.Visible = !runningModeOff;
-            lblBreakMessage.Visible = !runningModeOff;
-
             hScrollBarFocusTime.Enabled = runningModeOff;
             hScrollBarBreakTime.Enabled = runningModeOff;
 
             if (runningModeOff)
             {
                 lblCounter.Text = "00:00:00";
-                backgroundWorker1.ReportProgress(0);
+                //backgroundWorker1.ReportProgress(0);
 
-                hScrollBarFocusTime.Value = 0;
-                hScrollBarBreakTime.Value = 0;
             }
         }
 
         private async void SetWarningMessage()
         {
             lblWarnings.Visible = true;
-            await Task.Delay(5000);
+            await Task.Delay(2000);
             lblWarnings.Visible = false;
 
         }
 
+        private void RingTheAlarm()
+        {
+            SoundPlayer player = new SoundPlayer();
+            player.SoundLocation = @"c:\windows\media\Alarm10.wav";
+            player.PlayLooping();
+            //timer1.Enabled = false;
+            //lblCounter.Text = "00:00:00";
+            Thread.Sleep(7000);
+            player.Stop();
+            //timer1.Enabled = true;
+
+        }
+
+
+
+        //private async void CheckCancellation(object sender, DoWorkEventArgs e)
+        //{
+        //    if (backgroundWorker1.CancellationPending)
+        //    {
+        //        e.Cancel = true;
+        //        backgroundWorker1.ReportProgress(0);
+        //        return;
+        //    }
+        //}
 
     }
 }

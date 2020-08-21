@@ -48,6 +48,7 @@
             this.lblBreakMessage = new System.Windows.Forms.Label();
             this.btnStop = new PomodoroAlarm.RoundedButton();
             this.btnStart = new PomodoroAlarm.RoundedButton();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -270,6 +271,10 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            // 
             // PomodoroForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -323,6 +328,7 @@
         private System.Windows.Forms.Label lblFocusMessage;
         private System.Windows.Forms.Label lblWarnings;
         private System.Windows.Forms.Label lblBreakMessage;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
