@@ -19,6 +19,8 @@ namespace PomodoroAlarm
         int breakDurationInSeconds;
         //bool restartWorker = false;
 
+        bool alarmIsRinging;
+
         public PomodoroForm()
         {
             InitializeComponent();
@@ -59,6 +61,10 @@ namespace PomodoroAlarm
         }
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            if (alarmIsRinging)
+            {
+                return;
+            }
             if (focusDurationInSeconds > 0)
             {
                 focusDurationInSeconds--;
@@ -258,7 +264,6 @@ namespace PomodoroAlarm
             {
                 lblCounter.Text = "00:00:00";
                 //backgroundWorker1.ReportProgress(0);
-
             }
         }
 
@@ -272,15 +277,13 @@ namespace PomodoroAlarm
 
         private void RingTheAlarm()
         {
+            alarmIsRinging = true;
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = @"c:\windows\media\Alarm10.wav";
             player.PlayLooping();
-            //timer1.Enabled = false;
-            //lblCounter.Text = "00:00:00";
             Thread.Sleep(7000);
             player.Stop();
-            //timer1.Enabled = true;
-
+            alarmIsRinging = false;
         }
 
 
