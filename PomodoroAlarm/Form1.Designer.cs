@@ -35,6 +35,8 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.btnExit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnMaximizeOrNormalize = new System.Windows.Forms.Button();
+            this.btnMinimize = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.hScrollBarFocusTime = new System.Windows.Forms.HScrollBar();
@@ -46,8 +48,7 @@
             this.lblFocusMessage = new System.Windows.Forms.Label();
             this.lblWarnings = new System.Windows.Forms.Label();
             this.lblBreakMessage = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnStop = new PomodoroAlarm.RoundedButton();
             this.btnStart = new PomodoroAlarm.RoundedButton();
             this.panel2.SuspendLayout();
@@ -98,26 +99,62 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(526, 3);
+            this.btnExit.Location = new System.Drawing.Point(522, -3);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(27, 32);
             this.btnExit.TabIndex = 21;
             this.btnExit.Text = "X";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.BtnExit_Click);
+            this.btnExit.MouseHover += new System.EventHandler(this.BtnExit_MouseHover);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.SlateGray;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnMaximizeOrNormalize);
+            this.panel2.Controls.Add(this.btnMinimize);
             this.panel2.Controls.Add(this.btnExit);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Location = new System.Drawing.Point(-3, -4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(555, 74);
+            this.panel2.Size = new System.Drawing.Size(551, 74);
             this.panel2.TabIndex = 17;
+            // 
+            // btnMaximizeOrNormalize
+            // 
+            this.btnMaximizeOrNormalize.BackColor = System.Drawing.Color.Transparent;
+            this.btnMaximizeOrNormalize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMaximizeOrNormalize.FlatAppearance.BorderSize = 0;
+            this.btnMaximizeOrNormalize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximizeOrNormalize.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaximizeOrNormalize.ForeColor = System.Drawing.Color.White;
+            this.btnMaximizeOrNormalize.Location = new System.Drawing.Point(488, -3);
+            this.btnMaximizeOrNormalize.Name = "btnMaximizeOrNormalize";
+            this.btnMaximizeOrNormalize.Size = new System.Drawing.Size(27, 32);
+            this.btnMaximizeOrNormalize.TabIndex = 24;
+            this.btnMaximizeOrNormalize.Text = "🗖";
+            this.btnMaximizeOrNormalize.UseVisualStyleBackColor = false;
+            this.btnMaximizeOrNormalize.Click += new System.EventHandler(this.BtnMaximizeOrNormalize_Click);
+            this.btnMaximizeOrNormalize.MouseHover += new System.EventHandler(this.BtnMaximizeOrNormalize_MouseHover);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.BackColor = System.Drawing.Color.Transparent;
+            this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMinimize.ForeColor = System.Drawing.Color.White;
+            this.btnMinimize.Location = new System.Drawing.Point(454, -16);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(27, 45);
+            this.btnMinimize.TabIndex = 23;
+            this.btnMinimize.Text = "_";
+            this.btnMinimize.UseVisualStyleBackColor = false;
+            this.btnMinimize.Click += new System.EventHandler(this.BtnMinimize_Click);
+            this.btnMinimize.MouseHover += new System.EventHandler(this.BtnMinimize_MouseHover);
             // 
             // label8
             // 
@@ -234,38 +271,6 @@
             this.lblBreakMessage.Text = "Good job! It\'s Break Time!";
             this.lblBreakMessage.Visible = false;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(458, -10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 45);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "_";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(492, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(27, 32);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "🗖";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
             // btnStop
             // 
             this.btnStop.BorderColor = System.Drawing.Color.PowderBlue;
@@ -331,6 +336,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pomodoro Alarm";
             this.Load += new System.EventHandler(this.PomodoroForm_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PomodoroForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PomodoroForm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PomodoroForm_MouseUp);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -359,8 +367,9 @@
         private System.Windows.Forms.Label lblFocusMessage;
         private System.Windows.Forms.Label lblWarnings;
         private System.Windows.Forms.Label lblBreakMessage;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Button btnMaximizeOrNormalize;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

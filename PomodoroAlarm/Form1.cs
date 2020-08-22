@@ -19,12 +19,12 @@ namespace PomodoroAlarm
         int breakDurationInSeconds;
 
         bool alarmIsRinging;
+        bool dragWindow = false;
 
         public PomodoroForm()
         {
             InitializeComponent();
         }
-
         private void PomodoroForm_Load(object sender, EventArgs e)
         {
             SetUpScrollBars();
@@ -32,7 +32,6 @@ namespace PomodoroAlarm
             alarmIsRinging = false;
 
         }
-
         private void BtnStart_Click(object sender, EventArgs e)
         {
             focusDurationInSeconds = hScrollBarFocusTime.Value * 60;
@@ -86,7 +85,6 @@ namespace PomodoroAlarm
                 timer1.Stop();
             }
         }
-
         private void BtnStop_Click(object sender, EventArgs e)
         {
             if (backgroundWorker1.IsBusy)
@@ -106,15 +104,63 @@ namespace PomodoroAlarm
         {
             Application.Exit();
         }
+        private void BtnExit_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Close", btnExit);
+        }
+        private void BtnMaximizeOrNormalize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                WindowState = FormWindowState.Maximized;
+                CenterToScreen();
+            }
+        }
+        private void BtnMaximizeOrNormalize_MouseHover(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                toolTip1.Show("Restore Down", btnMaximizeOrNormalize);
+            }
+            else
+            {
+                toolTip1.Show("Maximize", btnMaximizeOrNormalize);
+            }
+        }
+        private void BtnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
 
+        }
+        private void BtnMinimize_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Minimize", btnMinimize);
+        }
+        private void PomodoroForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragWindow = true;
+        }
+        private void PomodoroForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragWindow == true)
+            {
+                Location = Cursor.Position;
+
+            }
+        }
+        private void PomodoroForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragWindow = false;
+
+        }
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             int totalFocusSeconds = hScrollBarFocusTime.Value * 60;
             int totalBreakSeconds = hScrollBarBreakTime.Value * 60;
-
-
-            //int totalFocusSeconds = 5;
-            //int totalBreakSeconds = 5;
 
             if (focusDurationInSeconds > 0)
             {
@@ -130,7 +176,16 @@ namespace PomodoroAlarm
 
             backgroundWorker1.ReportProgress(0);
         }
-
+        /// <summary>
+        /// The progress bar must go from 1% until 100% completion. It will run as a for loop from 1 to 100, and this number goes to the 
+        /// backgroungworker.progress, to report progress and fill up the bar. But, the bar cannot be filled on every second, otherwise it will be 
+        /// completed before the actual duration of the task, which can go up to 2 hours. To manage that, we need to use a Thread.Sleep method, to 
+        /// hold the status of the progress bar proportionally to the task actual duration. To do that, we have a nested for loop and it will run
+        /// from 0 until "miliseconds", which represents 1% of progress on the taskbar. Also, for each %, it will check if there has been a 
+        /// cancellation at any point.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="totalSeconds"></param>
         private void RunProgressBar(DoWorkEventArgs e, int totalSeconds)
         {
             for (int i = 1; i <= 100; i++)
@@ -142,9 +197,9 @@ namespace PomodoroAlarm
                 // that will occur everytime the code goes into the for loop.
                 //
                 //
-                var miliseconds = (totalSeconds) * 1000 / 100 / 2;
+                var milisecondsPerPercentage = (totalSeconds + 1) * 1000 / 100 / 2;
 
-                for (int p = 0; p < miliseconds; p++)
+                for (int p = 1; p <= milisecondsPerPercentage; p++)
                 {
                     if (backgroundWorker1.CancellationPending)
                     {
@@ -159,26 +214,12 @@ namespace PomodoroAlarm
 
             RingTheAlarm();
         }
-
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
         }
-
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //if (restartWorker)
-            //{
-            //    backgroundWorker1.CancelAsync();
-            //    restartWorker = false;
-
-            //}
-            //if (e.Cancelled)
-            //{
-            //    lblWarnings.Text = "You cancelled the activity...";
-            //    SetWarningMessage();
-
-            //}
             if (e.Error != null)
             {
                 lblWarnings.Text = e.Error.Message;
@@ -190,8 +231,6 @@ namespace PomodoroAlarm
                 SetRunningModeOff(true);
             }
         }
-
-
         private void HScrollBarFocusTime_Scroll(object sender, ScrollEventArgs e)
         {
             lblFocusTime.Text = hScrollBarFocusTime.Value + " minutes";
@@ -202,7 +241,6 @@ namespace PomodoroAlarm
             lblBreakTime.Text = hScrollBarBreakTime.Value + " minutes";
             lblBreakTime.Visible = true;
         }
-
         private void SetUpScrollBars()
         {
             hScrollBarFocusTime.Minimum = 0;
@@ -215,7 +253,14 @@ namespace PomodoroAlarm
             hScrollBarBreakTime.SmallChange = 1;
             hScrollBarBreakTime.LargeChange = 5;
         }
-
+        /// <summary>
+        /// The rest of the modulus operation of the duration in seconds by 60 will give us the number of seconds to output.
+        /// Because, when calculating the modulus by 60, we will know if there is any integer rest on the division, and that is the number of seconds.
+        /// 120 seconds divided by 60 has a modulus of 0. After one second, it will check 119 % 60, which is 59. I.e, the rest of the modulus operation
+        /// is the number of seconds that must be shown.
+        /// </summary>
+        /// <param name="durationInSeconds"></param>
+        /// <returns></returns>
         private string GetSeconds(int durationInSeconds) => (durationInSeconds % 60).ToString("00");
         //{
         //    int seconds = focusDurationInSeconds % 60;
@@ -226,9 +271,16 @@ namespace PomodoroAlarm
         //    //    ? seconds.ToString() 
         //    //    : "0" + seconds;
         //}
-
-
-
+        /// <summary>
+        /// Converts the totalSeconds that does not compound the hours into minutes. First, it will check if the modulus of the totalSeconds per 3600
+        /// is less or equal to 1. If it is, it means that there are no rest in the division of totalSeconds/3600, which means that there are not
+        /// enough seconds to complete one or more hours OR the number of hours is 1 (3600 sec / 3600 sec <= 1).
+        /// Else, means that the modulus is greater than 1, which means that we have 1 or more hours for the task. We have to subtract the number of
+        /// seconds from the hours and transform the rest to minutes (multiply the rest by 60).
+        /// 
+        /// </summary>
+        /// <param name="durationInSeconds"></param>
+        /// <returns></returns>
         private string GetMinutes(int durationInSeconds)
         {
             int minutes;
@@ -239,7 +291,6 @@ namespace PomodoroAlarm
                 minutes = durationInSeconds / 60;
                 return minutes.ToString("00");
             }
-
             else
             {
                 minutes = durationInSeconds / 60 - hours * 60;
@@ -247,13 +298,20 @@ namespace PomodoroAlarm
             }
 
         }
-
+        /// <summary>
+        /// This method is used to convert the total task duration in seconds to hours, so it can be displayed on the lblcounter.
+        /// It gets the duration in seconds and divide it per 3600 seconds (1 hour). It will return the number of hours with a To.String(00), 
+        /// which will make the output show up with 2 decimal places.
+        /// It needs to be called before minutes and seconds, because we have to know if there are seconds enough to have one or more hours.
+        /// If we have enough seconds to complete one or more hours, it will be reduced and the rest can be used to calculate minutes and seconds.
+        /// </summary>
+        /// <param name="durationInSeconds"></param>
+        /// <returns></returns>
         private string GetHours(int durationInSeconds)
         {
             int hours = durationInSeconds / 3600;
             return hours.ToString("00");
         }
-
         private void SetRunningModeOff(bool runningModeOff)
         {
             btnStart.Enabled = runningModeOff;
@@ -265,10 +323,8 @@ namespace PomodoroAlarm
             if (runningModeOff)
             {
                 lblCounter.Text = "00:00:00";
-                //backgroundWorker1.ReportProgress(0);
             }
         }
-
         private async void SetWarningMessage()
         {
             lblWarnings.Visible = true;
@@ -276,7 +332,12 @@ namespace PomodoroAlarm
             lblWarnings.Visible = false;
 
         }
-
+        /// <summary>
+        /// This function creates a SoundPlayer object and uses it to ring a sound located in a specific folder. It will loop the sound for 7seconds
+        /// and stop after that. Since it's a thread.sleep, it stops the running code.
+        /// It sets the boolean alarmIsRinging to true in order to make the timer tick event to stop while the alarm is ringing.
+        /// After the alarm stops, the alarmIsRinging variable is set to false, which will allow the timer to resume.
+        /// </summary>
         private void RingTheAlarm()
         {
             alarmIsRinging = true;
@@ -288,22 +349,5 @@ namespace PomodoroAlarm
             alarmIsRinging = false;
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Maximized)
-            {
-                WindowState = FormWindowState.Normal;
-
-            }
-            else
-            {
-                WindowState = FormWindowState.Maximized;
-            }
-        }
     }
 }
