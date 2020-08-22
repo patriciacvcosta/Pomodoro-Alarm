@@ -17,7 +17,6 @@ namespace PomodoroAlarm
     {
         int focusDurationInSeconds;
         int breakDurationInSeconds;
-        //bool restartWorker = false;
 
         bool alarmIsRinging;
 
@@ -30,6 +29,8 @@ namespace PomodoroAlarm
         {
             SetUpScrollBars();
             SetRunningModeOff(true);
+            alarmIsRinging = false;
+
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -111,51 +112,52 @@ namespace PomodoroAlarm
             int totalFocusSeconds = hScrollBarFocusTime.Value * 60;
             int totalBreakSeconds = hScrollBarBreakTime.Value * 60;
 
+
             //int totalFocusSeconds = 5;
             //int totalBreakSeconds = 5;
 
             if (focusDurationInSeconds > 0)
             {
-                for (int i = 1; i <= 100; i++)
-                {
-                    if (backgroundWorker1.CancellationPending)
-                    {
-                        e.Cancel = true;
-                        backgroundWorker1.ReportProgress(0);
-                        return;
-                    }
-                    backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
+                RunProgressBar(e, totalFocusSeconds);
 
-                    Thread.Sleep(totalFocusSeconds * 1000 / 100);
-
-                }
-
-                RingTheAlarm();
             }
-
 
             if (breakDurationInSeconds > 0)
             {
-                //restartWorker = true;
+                RunProgressBar(e, totalBreakSeconds);
 
-                for (int i = 1; i <= 100; i++)
+            }
+
+            backgroundWorker1.ReportProgress(0);
+        }
+
+        private void RunProgressBar(DoWorkEventArgs e, int totalSeconds)
+        {
+            for (int i = 1; i <= 100; i++)
+            {
+                backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
+
+                // How many miliseconds represents 1% of the progress bar (so the progress bar will be filled proportionaly to the task duration. 
+                // However, the thread.sleep method has a delay to start and to stop. So, I divided the miliseconds by 2 to compensate that delay
+                // that will occur everytime the code goes into the for loop.
+                //
+                //
+                var miliseconds = (totalSeconds) * 1000 / 100 / 2;
+
+                for (int p = 0; p < miliseconds; p++)
                 {
-                    Thread.Sleep(totalBreakSeconds * 1000 / 100);
-
-                    backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
-
                     if (backgroundWorker1.CancellationPending)
                     {
                         e.Cancel = true;
                         backgroundWorker1.ReportProgress(0);
                         return;
                     }
+
+                    Thread.Sleep(1);
                 }
-                
-                RingTheAlarm();
             }
 
-            backgroundWorker1.ReportProgress(0);
+            RingTheAlarm();
         }
 
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -183,7 +185,7 @@ namespace PomodoroAlarm
                 SetWarningMessage();
 
             }
-            else if(!e.Cancelled)
+            else if (!e.Cancelled)
             {
                 SetRunningModeOff(true);
             }
@@ -286,17 +288,22 @@ namespace PomodoroAlarm
             alarmIsRinging = false;
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
 
-        //private async void CheckCancellation(object sender, DoWorkEventArgs e)
-        //{
-        //    if (backgroundWorker1.CancellationPending)
-        //    {
-        //        e.Cancel = true;
-        //        backgroundWorker1.ReportProgress(0);
-        //        return;
-        //    }
-        //}
-
+            }
+            else
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+        }
     }
 }

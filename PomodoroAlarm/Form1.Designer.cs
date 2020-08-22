@@ -46,6 +46,8 @@
             this.lblFocusMessage = new System.Windows.Forms.Label();
             this.lblWarnings = new System.Windows.Forms.Label();
             this.lblBreakMessage = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnStop = new PomodoroAlarm.RoundedButton();
             this.btnStart = new PomodoroAlarm.RoundedButton();
             this.panel2.SuspendLayout();
@@ -96,9 +98,9 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(520, 2);
+            this.btnExit.Location = new System.Drawing.Point(526, 3);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(33, 35);
+            this.btnExit.Size = new System.Drawing.Size(27, 32);
             this.btnExit.TabIndex = 21;
             this.btnExit.Text = "X";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -108,6 +110,8 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.SlateGray;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btnExit);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Location = new System.Drawing.Point(-3, -4);
@@ -230,6 +234,38 @@
             this.lblBreakMessage.Text = "Good job! It\'s Break Time!";
             this.lblBreakMessage.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(458, -10);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(27, 45);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "_";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(492, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(27, 32);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "🗖";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
             // btnStop
             // 
             this.btnStop.BorderColor = System.Drawing.Color.PowderBlue;
@@ -323,6 +359,8 @@
         private System.Windows.Forms.Label lblFocusMessage;
         private System.Windows.Forms.Label lblWarnings;
         private System.Windows.Forms.Label lblBreakMessage;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
