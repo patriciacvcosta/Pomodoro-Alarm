@@ -76,7 +76,7 @@ Transform time from being an enemy to being an ally.
 
 MIT License
 
-Copyright (c) [2020] [Patricia Canuto Vieira da Costa]
+Copyright &copy; [2020] [Patricia Canuto Vieira da Costa]
 
 [Back To The Top](#focustimer-app---pomodoro-clock)
 
