@@ -161,11 +161,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Bauhaus 93", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(91, 7);
+            this.label8.Location = new System.Drawing.Point(116, 8);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(361, 53);
+            this.label8.Size = new System.Drawing.Size(349, 53);
             this.label8.TabIndex = 22;
-            this.label8.Text = "Focus Timer App";
+            this.label8.Text = "FocusTimer App";
             // 
             // label7
             // 

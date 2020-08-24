@@ -1,4 +1,4 @@
-# Pomodoro Alarm
+# FocusTimer App - Pomodoro Clock
 
 <h1 align="center">
     <img src="PomodoroAlarm/App-Picture.jpg"
@@ -9,7 +9,7 @@
 
 <!-- ![Alt text](PomodoroAlarm/App-Picture.jpg?raw=true "Title") -->
 
-> FocusTimer App Window
+<p align="center"> FocusTimer App Window<p>
 
 ---
 
@@ -18,7 +18,7 @@
 
 - [Description](#description)
 - [How To Use](#how-to-use)
-- [References](#references)
+- [Useful links and resources](#Useful-links-and-resources)
 - [License](#license)
 - [Author Info](#author-info)
 
@@ -37,13 +37,17 @@ Transform time from being an enemy to being an ally.
 - Windows Forms
 - C#
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#focustimer-app---pomodoro-clock)
 
 ---
 
 ## How To Use
 
-XXXXXXXXXXXXX
+* Set a duration for your Focus and Break sessions (or only one of them)
+* Press Start button and the timer will start running
+* If you set up both Focus and Break sessions, the app will automatically start running your Break session after the Focus session is over
+* An alarm will ring everytime the progress bar is complete
+* You can hit the Stop button at any time to cancel the activty
 
 
 
@@ -64,7 +68,7 @@ XXXXXXXXXXXXX
 
 -   More about the [Pomodoro Technique](https://en.m.wikipedia.org/wiki/Pomodoro_Technique)
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#focustimer-app---pomodoro-clock)
 
 ---
 
@@ -74,25 +78,7 @@ MIT License
 
 Copyright (c) [2020] [Patricia Canuto Vieira da Costa]
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-[Back To The Top](#read-me-template)
+[Back To The Top](#focustimer-app---pomodoro-clock)
 
 ---
 
@@ -100,4 +86,4 @@ SOFTWARE.
 
 - LinkedIn - [Patricia Costa](https://www.linkedin.com/in/patricia-costa-885038a0/)
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#focustimer-app---pomodoro-clock)
