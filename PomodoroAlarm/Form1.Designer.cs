@@ -204,7 +204,6 @@
             this.lblFocusTime.Size = new System.Drawing.Size(20, 23);
             this.lblFocusTime.TabIndex = 23;
             this.lblFocusTime.Text = "x";
-            this.lblFocusTime.Visible = false;
             // 
             // timer1
             // 
@@ -221,7 +220,6 @@
             this.lblBreakTime.Size = new System.Drawing.Size(20, 23);
             this.lblBreakTime.TabIndex = 26;
             this.lblBreakTime.Text = "x";
-            this.lblBreakTime.Visible = false;
             // 
             // lblCounter
             // 

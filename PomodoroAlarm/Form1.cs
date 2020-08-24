@@ -234,24 +234,27 @@ namespace PomodoroAlarm
         private void HScrollBarFocusTime_Scroll(object sender, ScrollEventArgs e)
         {
             lblFocusTime.Text = hScrollBarFocusTime.Value + " minutes";
-            lblFocusTime.Visible = true;
         }
         private void HScrollBarBreakTime_Scroll(object sender, ScrollEventArgs e)
         {
             lblBreakTime.Text = hScrollBarBreakTime.Value + " minutes";
-            lblBreakTime.Visible = true;
         }
         private void SetUpScrollBars()
         {
+            hScrollBarFocusTime.Value = 25;
             hScrollBarFocusTime.Minimum = 0;
-            hScrollBarFocusTime.Maximum = 124;
+            hScrollBarFocusTime.Maximum = 64;
             hScrollBarFocusTime.SmallChange = 1;
             hScrollBarFocusTime.LargeChange = 5;
+            lblFocusTime.Text = hScrollBarFocusTime.Value + " minutes";
 
+            hScrollBarBreakTime.Value = 5;
             hScrollBarBreakTime.Minimum = 0;
-            hScrollBarBreakTime.Maximum = 124;
+            hScrollBarBreakTime.Maximum = 64;
             hScrollBarBreakTime.SmallChange = 1;
             hScrollBarBreakTime.LargeChange = 5;
+            lblBreakTime.Text = hScrollBarBreakTime.Value + " minutes";
+
         }
         /// <summary>
         /// The rest of the modulus operation of the duration in seconds by 60 will give us the number of seconds to output.

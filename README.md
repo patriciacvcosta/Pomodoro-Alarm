@@ -2,17 +2,17 @@
 
 <img src="PomodoroAlarm/App-Picture.jpg"
      alt="Markdown Monster icon"
-     style="float: left; margin-right: 10px; display: block; margin-left: auto; margin-right: auto; width: 100%;" 
+     style="float: left; display: block; margin-left: auto; margin-right: auto; width: 100%;" 
 />
 
 <!-- ![Alt text](PomodoroAlarm/App-Picture.jpg?raw=true "Title") -->
 
-> App window
+> FocusTimer App Window
 
 ---
 
 ### Table of Contents
-You're sections headers will be used to reference location of destination.
+<!-- You're sections headers will be used to reference location of destination. -->
 
 - [Description](#description)
 - [How To Use](#how-to-use)
@@ -24,18 +24,24 @@ You're sections headers will be used to reference location of destination.
 
 ## Description
 
-Creating ReadMe's for your Github repository can be tedious.  I hope this template can save you time and effort as well as provide you with some consistency across your projects.
+The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals (traditionally 25 minutes in length) separated by short breaks (traditionally 5 minutes).
+
+This 
 
 #### Technologies
 
-- Technology 1
-- Technology 2
+- Windows Forms
+- C#
 
 [Back To The Top](#read-me-template)
 
 ---
 
 ## How To Use
+
+XXXXXXXXXXXXX
+
+
 
 #### Installation
 
@@ -59,7 +65,7 @@ Creating ReadMe's for your Github repository can be tedious.  I hope this templa
 
 MIT License
 
-Copyright (c) [2017] [James Q Quick]
+Copyright (c) [2020] [Patricia Canuto Vieira da Costa]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -85,7 +91,6 @@ SOFTWARE.
 
 ## Author Info
 
-- Twitter - [@jamesqquick](https://twitter.com/jamesqquick)
-- Website - [James Q Quick](https://jamesqquick.com)
+- LinkedIn - [Patricia Costa](https://www.linkedin.com/in/patricia-costa-885038a0/)
 
 [Back To The Top](#read-me-template)
