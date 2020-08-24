@@ -331,13 +331,19 @@ namespace PomodoroAlarm
         /// </summary>
         private void RingTheAlarm()
         {
-            alarmIsRinging = true;
-            SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = @"sounds\Alarm10.wav";
-            player.PlayLooping();
-            Thread.Sleep(7000);
-            player.Stop();
-            alarmIsRinging = false;
+            try
+            {
+                alarmIsRinging = true;
+                SoundPlayer player = new SoundPlayer(PomodoroAlarm.Properties.Resources.Alarm10);
+                player.PlayLooping();
+                Thread.Sleep(7000);
+                player.Stop();
+                alarmIsRinging = false;
+            }
+            catch
+            {
+                return;
+            }
         }
 
     }

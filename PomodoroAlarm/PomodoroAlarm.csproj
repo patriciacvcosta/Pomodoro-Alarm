@@ -91,9 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="hnet.com-image.ico" />
-    <Content Include="sounds\Alarm10.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

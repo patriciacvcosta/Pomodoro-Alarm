@@ -61,6 +61,15 @@ namespace PomodoroAlarm.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Alarm10 {
+            get {
+                return ResourceManager.GetStream("Alarm10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap App_Icon_Slate_Gray_Background {
