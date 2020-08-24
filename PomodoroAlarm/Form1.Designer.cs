@@ -91,7 +91,7 @@
             // 
             this.progressBar.Location = new System.Drawing.Point(24, 147);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(334, 37);
+            this.progressBar.Size = new System.Drawing.Size(339, 37);
             this.progressBar.TabIndex = 7;
             // 
             // btnExit
@@ -229,11 +229,11 @@
             // 
             this.lblCounter.AutoSize = true;
             this.lblCounter.BackColor = System.Drawing.Color.Transparent;
-            this.lblCounter.Font = new System.Drawing.Font("Agency FB", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCounter.Font = new System.Drawing.Font("Agency FB", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCounter.ForeColor = System.Drawing.Color.White;
-            this.lblCounter.Location = new System.Drawing.Point(409, 144);
+            this.lblCounter.Location = new System.Drawing.Point(387, 139);
             this.lblCounter.Name = "lblCounter";
-            this.lblCounter.Size = new System.Drawing.Size(114, 42);
+            this.lblCounter.Size = new System.Drawing.Size(150, 51);
             this.lblCounter.TabIndex = 27;
             this.lblCounter.Text = "00:00:00";
             // 
