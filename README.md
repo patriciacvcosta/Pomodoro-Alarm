@@ -1,7 +1,7 @@
 # FocusTimer App - Pomodoro Clock
 
 <h1 align="center">
-    <img src="PomodoroAlarm/App-Picture.jpg"
+    <img src="PomodoroAlarm/App-Picture-2.jpg"
         alt="Markdown Monster icon"
         style="float: left; display: block; margin-left: auto; margin-right: auto; width: 100%;" 
     />
@@ -46,7 +46,7 @@ Transform time from being an enemy to being an ally.
 * Set a duration for your Focus and Break sessions (or only one of them)
 * Press Start button and the timer will start running
 * If you set up both Focus and Break sessions, the app will automatically start running your Break session after the Focus session is over
-* An alarm will ring everytime the progress bar is complete
+* A sound will play everytime the progress bar is complete / the timer hits 00:00
 * You can hit the Stop button at any time to cancel the activty
 
 
