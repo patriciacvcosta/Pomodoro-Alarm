@@ -333,7 +333,7 @@ namespace PomodoroAlarm
         {
             alarmIsRinging = true;
             SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = @"C:\Users\patri\OneDrive\Classes\98_Personal_Projects\04_PomodoroAlarm\PomodoroAlarm\PomodoroAlarm\sounds\Alarm10.wav";
+            player.SoundLocation = @"sounds\Alarm10.wav";
             player.PlayLooping();
             Thread.Sleep(7000);
             player.Stop();
