@@ -1,9 +1,11 @@
 # Pomodoro Alarm
 
-<img src="PomodoroAlarm/App-Picture.jpg"
-     alt="Markdown Monster icon"
-     style="float: left; display: block; margin-left: auto; margin-right: auto; width: 100%;" 
-/>
+<h1 align="center">
+    <img src="PomodoroAlarm/App-Picture.jpg"
+        alt="Markdown Monster icon"
+        style="float: left; display: block; margin-left: auto; margin-right: auto; width: 100%;" 
+    />
+</h1>
 
 <!-- ![Alt text](PomodoroAlarm/App-Picture.jpg?raw=true "Title") -->
 
@@ -26,7 +28,9 @@
 
 The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals (traditionally 25 minutes in length) separated by short breaks (traditionally 5 minutes).
 
-This 
+The FocusTimer App lets you configure a Focus and a Break time, with a maximum duration of 1 hour each. That way, you can prepare yourself psychologically to have a more focused work session, knowing that you'll also get to take regular breaks. This will bolster your motivation and keep you creative to complete a task within a set period of time.
+
+Transform time from being an enemy to being an ally.
 
 #### Technologies
 
@@ -43,20 +47,23 @@ XXXXXXXXXXXXX
 
 
 
-#### Installation
+<!-- #### Installation -->
 
 
-
+<!-- 
 #### API Reference
 
 ```html
     <p>dummy code</p>
 ```
-[Back To The Top](#read-me-template)
+[Back To The Top](#read-me-template) -->
 
 ---
 
-## References
+## Useful links and resources
+
+-   More about the [Pomodoro Technique](https://en.m.wikipedia.org/wiki/Pomodoro_Technique)
+
 [Back To The Top](#read-me-template)
 
 ---
