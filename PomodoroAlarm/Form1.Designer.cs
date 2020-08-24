@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PomodoroForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -49,9 +50,11 @@
             this.lblWarnings = new System.Windows.Forms.Label();
             this.lblBreakMessage = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStop = new PomodoroAlarm.RoundedButton();
             this.btnStart = new PomodoroAlarm.RoundedButton();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -112,6 +115,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.SlateGray;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.btnMaximizeOrNormalize);
             this.panel2.Controls.Add(this.btnMinimize);
             this.panel2.Controls.Add(this.btnExit);
@@ -269,6 +273,16 @@
             this.lblBreakMessage.Text = "Good job! It\'s Break Time!";
             this.lblBreakMessage.Visible = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(16, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(57, 68);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnStop
             // 
             this.btnStop.BorderColor = System.Drawing.Color.PowderBlue;
@@ -277,7 +291,7 @@
             this.btnStop.FlatAppearance.BorderSize = 0;
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.Location = new System.Drawing.Point(304, 417);
+            this.btnStop.Location = new System.Drawing.Point(305, 418);
             this.btnStop.Name = "btnStop";
             this.btnStop.OnHoverBorderColor = System.Drawing.Color.Gray;
             this.btnStop.OnHoverButtonColor = System.Drawing.Color.White;
@@ -297,7 +311,7 @@
             this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(144, 417);
+            this.btnStart.Location = new System.Drawing.Point(145, 418);
             this.btnStart.Name = "btnStart";
             this.btnStart.OnHoverBorderColor = System.Drawing.Color.Gray;
             this.btnStart.OnHoverButtonColor = System.Drawing.Color.White;
@@ -339,6 +353,7 @@
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PomodoroForm_MouseUp);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,6 +383,7 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnMaximizeOrNormalize;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

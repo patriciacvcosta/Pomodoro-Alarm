@@ -94,6 +94,8 @@ namespace PomodoroAlarm
                 timer1.Stop();
 
                 SetRunningModeOff(true);
+                lblFocusMessage.Visible = false;
+                lblBreakMessage.Visible = false;
 
                 lblWarnings.Text = "You cancelled the activity...";
                 SetWarningMessage();
