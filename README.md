@@ -1,7 +1,7 @@
 # FocusTimer App - Pomodoro Clock
 
 <h1 align="center">
-    <img src="PomodoroAlarm/App-Picture-2.jpg"
+    <img src="PomodoroAlarm/images/App-Picture-FINAL.jpg"
         alt="Markdown Monster icon"
         style="float: left; display: block; margin-left: auto; margin-right: auto; width: 100%;" 
     />

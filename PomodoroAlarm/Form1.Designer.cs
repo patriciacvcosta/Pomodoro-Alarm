@@ -33,9 +33,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.btnExit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMaximizeOrNormalize = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -45,12 +45,12 @@
             this.lblFocusTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblBreakTime = new System.Windows.Forms.Label();
-            this.lblCounter = new System.Windows.Forms.Label();
             this.lblFocusMessage = new System.Windows.Forms.Label();
             this.lblWarnings = new System.Windows.Forms.Label();
             this.lblBreakMessage = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.lblCounter = new System.Windows.Forms.Label();
             this.btnStop = new PomodoroAlarm.RoundedButton();
             this.btnStart = new PomodoroAlarm.RoundedButton();
             this.panel2.SuspendLayout();
@@ -87,13 +87,6 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(24, 147);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(339, 37);
-            this.progressBar.TabIndex = 7;
-            // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
@@ -125,6 +118,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(551, 74);
             this.panel2.TabIndex = 17;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(16, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(57, 68);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
             // 
             // btnMaximizeOrNormalize
             // 
@@ -225,18 +228,6 @@
             this.lblBreakTime.TabIndex = 26;
             this.lblBreakTime.Text = "x";
             // 
-            // lblCounter
-            // 
-            this.lblCounter.AutoSize = true;
-            this.lblCounter.BackColor = System.Drawing.Color.Transparent;
-            this.lblCounter.Font = new System.Drawing.Font("Agency FB", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCounter.ForeColor = System.Drawing.Color.White;
-            this.lblCounter.Location = new System.Drawing.Point(387, 139);
-            this.lblCounter.Name = "lblCounter";
-            this.lblCounter.Size = new System.Drawing.Size(150, 51);
-            this.lblCounter.TabIndex = 27;
-            this.lblCounter.Text = "00:00:00";
-            // 
             // lblFocusMessage
             // 
             this.lblFocusMessage.AutoSize = true;
@@ -254,7 +245,7 @@
             this.lblWarnings.AutoSize = true;
             this.lblWarnings.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWarnings.ForeColor = System.Drawing.Color.White;
-            this.lblWarnings.Location = new System.Drawing.Point(20, 185);
+            this.lblWarnings.Location = new System.Drawing.Point(19, 185);
             this.lblWarnings.Name = "lblWarnings";
             this.lblWarnings.Size = new System.Drawing.Size(86, 22);
             this.lblWarnings.TabIndex = 6;
@@ -273,15 +264,24 @@
             this.lblBreakMessage.Text = "Good job! It\'s Break Time!";
             this.lblBreakMessage.Visible = false;
             // 
-            // pictureBox1
+            // progressBar
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(16, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(57, 68);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 25;
-            this.pictureBox1.TabStop = false;
+            this.progressBar.Location = new System.Drawing.Point(17, 145);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(372, 37);
+            this.progressBar.TabIndex = 7;
+            // 
+            // lblCounter
+            // 
+            this.lblCounter.AutoSize = true;
+            this.lblCounter.BackColor = System.Drawing.Color.Transparent;
+            this.lblCounter.Font = new System.Drawing.Font("Agency FB", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCounter.ForeColor = System.Drawing.Color.White;
+            this.lblCounter.Location = new System.Drawing.Point(439, 138);
+            this.lblCounter.Name = "lblCounter";
+            this.lblCounter.Size = new System.Drawing.Size(105, 51);
+            this.lblCounter.TabIndex = 27;
+            this.lblCounter.Text = "00:00";
             // 
             // btnStop
             // 
@@ -364,7 +364,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.ProgressBar progressBar;
         private RoundedButton btnStop;
         private RoundedButton btnStart;
         private System.Windows.Forms.Button btnExit;
@@ -376,7 +375,6 @@
         private System.Windows.Forms.Label lblFocusTime;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblBreakTime;
-        private System.Windows.Forms.Label lblCounter;
         private System.Windows.Forms.Label lblFocusMessage;
         private System.Windows.Forms.Label lblWarnings;
         private System.Windows.Forms.Label lblBreakMessage;
@@ -384,6 +382,8 @@
         private System.Windows.Forms.Button btnMaximizeOrNormalize;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label lblCounter;
     }
 }
 

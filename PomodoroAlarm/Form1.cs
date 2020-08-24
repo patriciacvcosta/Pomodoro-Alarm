@@ -68,7 +68,7 @@ namespace PomodoroAlarm
             if (focusDurationInSeconds > 0)
             {
                 focusDurationInSeconds--;
-                lblCounter.Text = GetHours(focusDurationInSeconds) + ":" + GetMinutes(focusDurationInSeconds) + ":" + GetSeconds(focusDurationInSeconds);
+                lblCounter.Text = GetMinutes(focusDurationInSeconds) + ":" + GetSeconds(focusDurationInSeconds);
                 lblFocusMessage.Visible = true;
                 lblBreakMessage.Visible = false;
 
@@ -76,7 +76,7 @@ namespace PomodoroAlarm
             else if (breakDurationInSeconds > 0)
             {
                 breakDurationInSeconds--;
-                lblCounter.Text = GetHours(breakDurationInSeconds) + ":" + GetMinutes(breakDurationInSeconds) + ":" + GetSeconds(breakDurationInSeconds);
+                lblCounter.Text = GetMinutes(breakDurationInSeconds) + ":" + GetSeconds(breakDurationInSeconds);
                 lblFocusMessage.Visible = false;
                 lblBreakMessage.Visible = true;
             }
@@ -289,7 +289,7 @@ namespace PomodoroAlarm
         private string GetMinutes(int durationInSeconds)
         {
             int minutes;
-            int hours = Convert.ToInt32(GetHours(durationInSeconds));
+            int hours = durationInSeconds / 3600;
 
             if (durationInSeconds % 3600 <= 1)
             {
@@ -303,20 +303,6 @@ namespace PomodoroAlarm
             }
 
         }
-        /// <summary>
-        /// This method is used to convert the total task duration in seconds to hours, so it can be displayed on the lblcounter.
-        /// It gets the duration in seconds and divide it per 3600 seconds (1 hour). It will return the number of hours with a To.String(00), 
-        /// which will make the output show up with 2 decimal places.
-        /// It needs to be called before minutes and seconds, because we have to know if there are seconds enough to have one or more hours.
-        /// If we have enough seconds to complete one or more hours, it will be reduced and the rest can be used to calculate minutes and seconds.
-        /// </summary>
-        /// <param name="durationInSeconds"></param>
-        /// <returns></returns>
-        private string GetHours(int durationInSeconds)
-        {
-            int hours = durationInSeconds / 3600;
-            return hours.ToString("00");
-        }
         private void SetRunningModeOff(bool runningModeOff)
         {
             btnStart.Enabled = runningModeOff;
@@ -327,7 +313,7 @@ namespace PomodoroAlarm
 
             if (runningModeOff)
             {
-                lblCounter.Text = "00:00:00";
+                lblCounter.Text = "00:00";
             }
         }
         private async void SetWarningMessage()
