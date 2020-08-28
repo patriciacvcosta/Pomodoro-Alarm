@@ -89,8 +89,8 @@ namespace PomodoroAlarm
         {
             if (backgroundWorker1.IsBusy)
             {
-                backgroundWorker1.CancelAsync();
                 backgroundWorker1.ReportProgress(0);
+                backgroundWorker1.Abort();
                 timer1.Stop();
 
                 SetRunningModeOff(true);
@@ -167,6 +167,7 @@ namespace PomodoroAlarm
             if (focusDurationInSeconds > 0)
             {
                 RunProgressBar(e, totalFocusSeconds);
+                backgroundWorker1.ReportProgress(0);
 
             }
 
@@ -192,26 +193,19 @@ namespace PomodoroAlarm
         {
             for (int i = 1; i <= 100; i++)
             {
-                backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
-
                 // How many miliseconds represents 1% of the progress bar (so the progress bar will be filled proportionaly to the task duration. 
-                // However, the thread.sleep method has a delay to start and to stop. So, I divided the miliseconds by 2 to compensate that delay
-                // that will occur everytime the code goes into the for loop.
-                //
-                //
-                var milisecondsPerPercentage = (totalSeconds + 1) * 1000 / 100 / 2;
+               
+                var milisecondsPerPercentage = (totalSeconds) * 1000 / 100;
+                Thread.Sleep(milisecondsPerPercentage);
 
-                for (int p = 1; p <= milisecondsPerPercentage; p++)
+                if (backgroundWorker1.CancellationPending)
                 {
-                    if (backgroundWorker1.CancellationPending)
-                    {
-                        e.Cancel = true;
-                        backgroundWorker1.ReportProgress(0);
-                        return;
-                    }
-
-                    Thread.Sleep(1);
+                    e.Cancel = true;
+                    backgroundWorker1.ReportProgress(0);
+                    return;
                 }
+
+                backgroundWorker1.ReportProgress(i);   //ReportProgress method raises the ProgressChanged event automatically
             }
 
             RingTheAlarm();
